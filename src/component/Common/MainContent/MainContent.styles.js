@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Wrapper
 export const Wrapper = styled.div`
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #bfdbfe, #dbeafe);
+  background: linear-gradient(to bottom right, #ffffffff, #dbeafe);
 `;
 
 // Container

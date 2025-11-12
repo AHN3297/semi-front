@@ -1,5 +1,5 @@
-// src/components/Header/Header.jsx
 import React from "react";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
 import {
   StyledHeader,
   Nav,
@@ -15,26 +15,57 @@ import {
 } from "./Header.styles";
 
 const Header = () => {
+  const navigate = useNavigate(); // useNavigate 훅 생성
+
   const menuItems = [
-    { id: "speaker", title: "차량공유", submenu: ["예약하기", "차량 목록",] },
-    { id: "headphone", title: "게시판", submenu: ["자유게시판", "공지사항"] },
-    { id: "earphone", title: "충전소", submenu: ["충전소 정보", "충전소 리뷰"] },
+    {
+      id: "car",
+      title: "차량공유",
+      submenu: [
+        { name: "예약하기", path: "/car" },
+      ],
+    },
+    {
+      id: "board",
+      title: "게시판",
+      submenu: [
+        { name: "자유게시판", path: "/boardList" },
+        { name: "공지사항", path: "/notice" },
+      ],
+    },
+    {
+      id: "station",
+      title: "충전소",
+      submenu: [
+        { name: "충전소 정보", path: "/station/info" },
+        { name: "충전소 리뷰", path: "/station/review" },
+      ],
+    },
   ];
 
   return (
     <StyledHeader>
-      <Nav>
+      <Nav role="navigation" aria-label="메인 내비게이션">
         <NavContent>
-          <Logo>EVision</Logo>
+          <Logo>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              EVision
+            </Link>
+          </Logo>
 
-          <MenuContainer>
+          <MenuContainer as="ul">
             {menuItems.map((item) => (
-              <MenuItem key={item.id}>
+              <MenuItem as="li" key={item.id}>
                 <MenuButton>{item.title}</MenuButton>
-                <Dropdown>
+                <Dropdown as="ul">
                   {item.submenu.map((sub, idx) => (
-                    <DropdownItem key={idx} href="#">
-                      {sub}
+                    <DropdownItem as="li" key={idx}>
+                      <Link
+                        to={sub.path}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                      >
+                        {sub.name}
+                      </Link>
                     </DropdownItem>
                   ))}
                 </Dropdown>
@@ -43,8 +74,17 @@ const Header = () => {
           </MenuContainer>
 
           <Icons>
-            <IconButton>
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <IconButton
+              aria-label="프로필 보기"
+              onClick={() => navigate("/login")} 
+            >
+              <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -53,7 +93,6 @@ const Header = () => {
                 />
               </svg>
             </IconButton>
-
           </Icons>
         </NavContent>
       </Nav>
