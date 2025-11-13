@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
+import { Link, useNavigate } from "react-router-dom"; 
 import {
   StyledHeader,
   Nav,
@@ -15,7 +15,7 @@ import {
 } from "./Header.styles";
 
 const Header = () => {
-  const navigate = useNavigate(); // useNavigate 훅 생성
+  const navigate = useNavigate(); 
 
   const menuItems = [
     {
@@ -23,6 +23,7 @@ const Header = () => {
       title: "차량공유",
       submenu: [
         { name: "예약하기", path: "/car" },
+        { name: "차량등록", path: "/saveCar" }
       ],
     },
     {

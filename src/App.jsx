@@ -9,6 +9,9 @@ import BoardList from "./component/Common/Board/BoardList"
 import Notice from "./component/Common/Notice/Notice";
 import Car from "./component/Common/Car/Car";
 import CarDetail from "./component/Common/Car/CarDetail/CarDetail";
+import SaveCar from "./component/Common/Car/SaveCar/SaveCar";
+import Join from "./component/Common/Member/Join/Join";
+import Lisence from "./component/Common/Member/Lisence/Lisence"
 
 
 
@@ -24,6 +27,9 @@ const App = () => {
           <Route path="/notice" element={<Notice />} />
           <Route path="/car" element={<Car />} />
           <Route path="/carDetail" element={<CarDetail />} />
+          <Route path="/saveCar" element={<SaveCar />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/lisence" element={<Lisence />} />
           
         </Routes>
         <Footer />

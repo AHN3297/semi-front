@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ 추가
 import { Container, Form, Title, Input, Button } from "../../Styles/Styles";
 
 const Login = () => {
   const [memberId, setMemberId] = useState("");
   const [memberPwd, setMemberPwd] = useState("");
   const [msg, setMsg] = useState("");
+  const navigate = useNavigate(); // ✅ 추가
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // 로그인 로직
+  
     console.log(memberId, memberPwd);
   };
 
   const handleSignup = () => {
-    // 회원가입 페이지 이동 또는 모달 띄우기
-    console.log("회원가입 클릭");
+
+    navigate("/join");
   };
 
   return (
