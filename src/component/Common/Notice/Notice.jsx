@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Container } from '../Styles/Styles';
 import {
-  Container,
-  Header,
   Title,
   Subtitle,
   ContentWrapper,
@@ -66,12 +65,10 @@ const Notice = () => {
 
   return (
     <Container>
-      <Header>
+      <ContentWrapper>
         <Title>공지사항</Title>
         <Subtitle>notice</Subtitle>
-      </Header>
-
-      <ContentWrapper>
+        <br/><br/><br/><br/>
         <SearchSection>
           <SearchLabel>공지사항</SearchLabel>
           <SearchBox>

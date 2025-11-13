@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  background-color: #f5f5f5;
-`;
-
-export const Header = styled.div`
-  width: 100%;
-  background-color: #e8e8e8;
-  padding: 80px 0;
-  text-align: center;
-`;
 
 export const Title = styled.h1`
   font-size: 48px;
@@ -19,12 +7,14 @@ export const Title = styled.h1`
   margin: 0;
   margin-bottom: 8px;
   color: #000;
+  text-align: center;
 `;
 
 export const Subtitle = styled.p`
   font-size: 18px;
   color: #666;
   margin: 0;
+  text-align: center;
 `;
 
 export const ContentWrapper = styled.div`

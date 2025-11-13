@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { Container } from '../../Styles/Styles';
 import {
-  Container,
   FormWrapper,
   Title,
   Subtitle,
@@ -140,20 +140,7 @@ const Join = () => {
             </FormGroup>
 
             <ButtonGroup>
-            <LisenceButton onClick={handleLisence}>운전면허 인증</LisenceButton>
-            <p
-                style={{
-                    color: "#6b7280", // Tailwind gray-500
-                    fontSize: "13px",
-                    marginTop: "8px",
-                    textAlign: "center",
-                    lineHeight: "1.5",
-                    }}
-                >
-                운전면허 인증을 하지 않아도 회원가입이 가능합니다!<br />
-                (차량 예약 시 운전면허 인증이 필요합니다.)
-            </p>
-            <SubmitButton onClick={handleSubmit}>회원가입</SubmitButton>
+            <SubmitButton onClick={handleLisence}>회원가입</SubmitButton>
             <CancelButton onClick={handleCancel}>취소</CancelButton>
             </ButtonGroup>
         </FormWrapper>

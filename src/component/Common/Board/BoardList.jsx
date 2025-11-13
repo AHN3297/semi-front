@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Search, Plus, TrendingUp, MessageSquare, Eye, Filter, Clock, ThumbsUp } from "lucide-react";
-import * as S from "../Styles/Styles"; 
+import { Container } from "../Styles/Styles";
+import * as S from "./BoardList.styles"; 
+
 
 export default function BoardList() {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -47,7 +49,8 @@ export default function BoardList() {
   });
 
   return (
-    <S.Container>
+    
+    <Container>
       {/* Search */}
       <div style={{ marginBottom: "1.5rem", display: "flex", alignItems: "center" }}>
         <Search size={20} style={{ marginRight: "0.5rem", color: "#888" }} />
@@ -157,6 +160,7 @@ export default function BoardList() {
           </div>
         )}
       </div>
-    </S.Container>
+    </Container>
+    
   );
 }

@@ -1,13 +1,6 @@
 import styled from 'styled-components';
-
-export const Container = styled.div`
-  min-height: 100vh;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-`;
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const FormWrapper = styled.div`
   background: white;
@@ -99,3 +92,37 @@ export const SubmitButton = styled.button`
     opacity: 0.9;
   }
 `;
+export const SkipButton = styled.button`
+  width: 100%;
+  padding: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 30px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+export const CustomDatePicker = styled(DatePicker)`
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #666;
+  }
+`;
+
+
+

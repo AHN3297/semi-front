@@ -1,68 +1,6 @@
 import styled from "styled-components";
 
-/* 기존 로그인/폼 스타일 - 그대로 유지 */
-export const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #ffffff, #dbeafe);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 40px 20px;
-`;
-
-export const Form = styled.form`
-  background-color: #fff;
-  padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-
-export const Title = styled.h2`
-  margin-bottom: 20px;
-  font-size: 28px;
-  color: #333;
-  text-align: center;
-`;
-
-export const Input = styled.input`
-  padding: 12px 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  outline: none;
-  transition: 0.3s;
-
-  &:focus {
-    border-color: #93c5fd;
-    box-shadow: 0 0 5px #93c5fd;
-  }
-`;
-
-export const Button = styled.button`
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: #93c5fd;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
-    background: #93c5fd;
-  }
-`;
-
-
 /* 게시판 전체 영역  */
-
 export const BoardListWrapper = styled.div`
   display: flex;
   flex-direction: column;

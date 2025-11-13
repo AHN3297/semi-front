@@ -3,14 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   min-height: 100vh;
-  background-color: #fff;
+  background: linear-gradient(to bottom right, #ffffff, #dbeafe);
 `;
 
 export const Sidebar = styled.aside`
   width: 270px;
   padding: 40px 32px;
   border-right: 1px solid #e0e0e0;
-  background-color: #fff;
 `;
 
 export const KeywordsSection = styled.div`
@@ -132,6 +131,7 @@ export const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
@@ -140,6 +140,7 @@ export const CardGrid = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+  
 `;
 
 export const Card = styled.div`
@@ -150,6 +151,7 @@ export const Card = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition: box-shadow 0.2s;
+  background: white;
 
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
