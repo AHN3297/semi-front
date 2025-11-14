@@ -1,41 +1,64 @@
 import React, { useState } from "react";
-import { Search, Plus, TrendingUp, MessageSquare, Eye, Filter, Clock, ThumbsUp } from "lucide-react";
+import { Search, MessageSquare, Eye, Clock, ThumbsUp } from "lucide-react";
 import { Container } from "../Styles/Styles";
-import * as S from "./BoardList.styles"; 
-
+import * as S from "./BoardList.styles";
 
 export default function BoardList() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const posts = [
     {
       id: 1,
       title: "테슬라 모델 3 장거리 주행 후기",
-      content: "서울에서 부산까지 다녀왔는데 충전 인프라가 생각보다 잘 되어있더라구요...",
+      content: "서울에서 부산까지 다녀왔는데 충전 인프라가 생각보다 잘 되어있더라구요. 고속도로 휴게소마다 급속충전기가 있어서 편하게 다녀왔습니다.",
       author: "EV러버",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=1",
+      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=200&h=150&fit=crop",
       category: "후기",
-      likes: 42,
-      comments: 18,
       views: 256,
-      time: "2시간 전",
-      isHot: true
+      time: "2시간 전"
     },
     {
       id: 2,
       title: "전기차 충전 요금 할인 팁 공유합니다",
-      content: "심야 시간대 충전하면 최대 50% 할인되는 거 알고 계셨나요?",
+      content: "심야 시간대 충전하면 최대 50% 할인되는 거 알고 계셨나요? 밤 11시부터 아침 7시까지 충전하면 엄청 저렴해요!",
       author: "충전마스터",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=2",
+      image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=200&h=150&fit=crop",
       category: "정보",
-      likes: 87,
-      comments: 31,
       views: 512,
-      time: "5시간 전",
-      isHot: true
+      time: "5시간 전"
+    },
+    {
+      id: 3,
+      title: "겨울철 전기차 배터리 관리 어떻게 하시나요?",
+      content: "요즘 추워져서 주행거리가 확 줄더라구요. 좋은 방법 있을까요? 히터 때문에 배터리 소모가 심한 것 같아요.",
+      author: "겨울운전자",
+      image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?w=200&h=150&fit=crop",
+      category: "질문",
+      views: 189,
+      time: "1일 전"
+    },
+    {
+      id: 4,
+      title: "전기차 보조금 신청 완료했어요!",
+      content: "생각보다 절차가 간단하더라구요. 필요하신 분들 참고하세요. 서류 준비만 잘하면 금방 끝나요.",
+      author: "행복한오너",
+      image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=200&h=150&fit=crop",
+      category: "정보",
+      views: 342,
+      time: "1일 전"
+    },
+    {
+      id: 5,
+      title: "오늘 드라이브 코스 추천해요",
+      content: "제주도 해안도로 달리는데 전기차로 너무 좋네요. 조용하고 부드러운 승차감이 최고입니다!",
+      author: "여행러버",
+      image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=200&h=150&fit=crop",
+      category: "자유",
+      views: 156,
+      time: "2일 전"
     }
-    // 필요하면 더 추가
   ];
 
   const categories = ["all", "정보", "질문", "후기", "자유"];
@@ -48,119 +71,115 @@ export default function BoardList() {
     return matchesFilter && matchesSearch;
   });
 
+  const totalPages = 88;
+  const pageNumbers = [];
+  
+  if (currentPage <= 3) {
+    pageNumbers.push(1, 2, 3, '...', 87, 88);
+  } else if (currentPage >= totalPages - 2) {
+    pageNumbers.push(1, 2, '...', 86, 87, 88);
+  } else {
+    pageNumbers.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', 88);
+  }
+
   return (
-    
     <Container>
-      {/* Search */}
-      <div style={{ marginBottom: "1.5rem", display: "flex", alignItems: "center" }}>
-        <Search size={20} style={{ marginRight: "0.5rem", color: "#888" }} />
-        <input
-          type="text"
-          placeholder="게시글 검색..."
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-          style={{
-            flex: 1,
-            padding: "10px 15px",
-            borderRadius: "1rem",
-            border: "1px solid #ccc",
-            outline: "none",
-            fontSize: "14px"
-          }}
-        />
-      </div>
+      <S.BoardListWrapper>
+        <S.Header>
+          <S.Title>커뮤니티 게시판</S.Title>
+          <S.Subtitle>community board</S.Subtitle>
+        </S.Header>
 
-      {/* Category Filters */}
-      <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem" }}>
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setActiveFilter(cat)}
-            style={{
-              padding: "6px 12px",
-              borderRadius: "1rem",
-              border: activeFilter === cat ? "none" : "1px solid #ccc",
-              background: activeFilter === cat ? "linear-gradient(to right, #3b82f6, #06b6d4)" : "#fff",
-              color: activeFilter === cat ? "#fff" : "#333",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: 500
-            }}
-          >
-            {cat === "all" ? "전체" : cat}
-          </button>
-        ))}
-      </div>
+        {/* Search and Filter */}
+        <S.SearchFilterWrapper>
+          <S.FilterSelect value={activeFilter} onChange={(e) => setActiveFilter(e.target.value)}>
+            <option value="all">전체</option>
+            {categories.filter(cat => cat !== "all").map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </S.FilterSelect>
+          
+          <S.SearchInputWrapper>
+            <S.SearchInput
+              type="text"
+              placeholder="게시글 검색..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+            <S.SearchButton>
+              <Search size={18} />
+            </S.SearchButton>
+          </S.SearchInputWrapper>
+        </S.SearchFilterWrapper>
 
-      {/* Posts */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-        {filteredPosts.map(post => (
-          <div
-            key={post.id}
-            style={{
-              border: "1px solid #eee",
-              borderRadius: "1.5rem",
-              padding: "1rem",
-              boxShadow: "0 5px 15px rgba(0,0,0,0.05)",
-              cursor: "pointer",
-              transition: "all 0.3s",
-              background: "#fff"
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
-              <img
-                src={post.avatar}
-                alt={post.author}
-                style={{ width: "40px", height: "40px", borderRadius: "50%", marginRight: "0.5rem" }}
-              />
-              <div>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "14px" }}>
-                  <strong>{post.author}</strong>
-                  <span style={{ background: "#e0f2fe", color: "#0369a1", padding: "2px 6px", borderRadius: "0.5rem" }}>
-                    {post.category}
-                  </span>
-                  {post.isHot && (
-                    <span style={{ background: "linear-gradient(to right, #f97316, #ef4444)", color: "#fff", padding: "2px 6px", borderRadius: "0.5rem", display: "flex", alignItems: "center", gap: "2px", fontSize: "12px" }}>
-                      <TrendingUp size={12} />
-                      HOT
-                    </span>
-                  )}
-                </div>
-                <div style={{ display: "flex", alignItems: "center", fontSize: "12px", color: "#888", gap: "0.25rem", marginTop: "2px" }}>
-                  <Clock size={12} />
-                  {post.time}
-                </div>
-              </div>
-            </div>
+        {/* Posts List */}
+        <S.PostList>
+          {filteredPosts.map(post => (
+            <S.PostItem key={post.id}>
+              <S.PostImage src={post.image} alt={post.title} />
+              <S.PostContent>
+                <S.PostHeader>
+                  <S.BadgeWrapper>
+                    <S.CategoryBadge>{post.category}</S.CategoryBadge>
+                  </S.BadgeWrapper>
+                  <S.PostMeta>
+                    <S.AuthorInfo>
+                      <S.AuthorName>{post.author}</S.AuthorName>
+                    </S.AuthorInfo>
+                    <S.TimeInfo>
+                      <Clock size={12} />
+                      {post.time}
+                    </S.TimeInfo>
+                  </S.PostMeta>
+                </S.PostHeader>
+                
+                <S.PostTitle>{post.title}</S.PostTitle>
+                <S.PostDescription>{post.content}</S.PostDescription>
+                
+                <S.StatsWrapper>
+                  <S.StatItem>
+                    <Eye size={14} /> {post.views}
+                  </S.StatItem>
+                </S.StatsWrapper>
+              </S.PostContent>
+            </S.PostItem>
+          ))}
+        </S.PostList>
 
-            <h3 style={{ fontSize: "16px", fontWeight: "bold", marginBottom: "0.5rem" }}>{post.title}</h3>
-            <p style={{ fontSize: "14px", color: "#555", marginBottom: "0.5rem" }}>{post.content}</p>
-
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#555" }}>
-              <div style={{ display: "flex", gap: "1rem" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
-                  <ThumbsUp size={14} /> {post.likes}
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
-                  <MessageSquare size={14} /> {post.comments}
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.25rem", color: "#aaa" }}>
-                  <Eye size={14} /> {post.views}
-                </div>
-              </div>
-              <button style={{ color: "#3b82f6", fontWeight: 500 }}>자세히 보기 →</button>
-            </div>
-          </div>
-        ))}
+        {/* Pagination */}
+        {filteredPosts.length > 0 && (
+          <S.Pagination>
+            <S.PageButton onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}>
+              ← Previous
+            </S.PageButton>
+            
+            {pageNumbers.map((num, idx) => (
+              typeof num === 'number' ? (
+                <S.PageNumber
+                  key={idx}
+                  $active={currentPage === num}
+                  onClick={() => setCurrentPage(num)}
+                >
+                  {num}
+                </S.PageNumber>
+              ) : (
+                <S.PageDots key={idx}>...</S.PageDots>
+              )
+            ))}
+            
+            <S.PageButton onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}>
+              Next →
+            </S.PageButton>
+          </S.Pagination>
+        )}
 
         {filteredPosts.length === 0 && (
-          <div style={{ textAlign: "center", padding: "4rem 0" }}>
-            <Search size={32} style={{ color: "#ccc", marginBottom: "1rem" }} />
-            <p style={{ fontSize: "16px", color: "#555" }}>검색 결과가 없습니다.</p>
-          </div>
+          <S.EmptyState>
+            <Search size={48} style={{ color: "#d1d5db", marginBottom: "1rem" }} />
+            <p>검색 결과가 없습니다.</p>
+          </S.EmptyState>
         )}
-      </div>
+      </S.BoardListWrapper>
     </Container>
-    
   );
 }

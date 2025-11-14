@@ -60,6 +60,7 @@ const LicenseCertification = () => {
 
   return (
     <Container>
+    
       <FormWrapper>
         <Title>운전면허 인증</Title>
         <Subtitle>License Certification</Subtitle>

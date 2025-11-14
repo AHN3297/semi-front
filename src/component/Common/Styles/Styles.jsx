@@ -1,15 +1,8 @@
 import styled from "styled-components";
 
-/* 기존 로그인/폼 스타일 - 그대로 유지 */
+
 export const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
   background: linear-gradient(to bottom right, #ffffff, #dbeafe);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 40px 20px;
 `;
 
 export const Form = styled.form`

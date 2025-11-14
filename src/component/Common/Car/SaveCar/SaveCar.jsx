@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Container } from '../../Styles/Styles';
 import {
-  Container,
+  SubContainer,
   PageTitle,
   ContentWrapper,
   LeftSection,
@@ -26,6 +27,7 @@ import {
   SectionContent,
   Arrow
 } from './SaveCar.styles';
+import { Import } from 'lucide-react';
 
 const SaveCar = () => {
   const [formData, setFormData] = useState({
@@ -92,6 +94,7 @@ const SaveCar = () => {
 
   return (
     <Container>
+      <SubContainer>
       <PageTitle>차량 등록</PageTitle>
       
       <ContentWrapper>
@@ -203,6 +206,7 @@ const SaveCar = () => {
           </FormWrapper>
         </RightSection>
       </ContentWrapper>
+      </SubContainer>
     </Container>
   );
 };

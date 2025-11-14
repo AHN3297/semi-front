@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ 추가
-import { Container, Form, Title, Input, Button } from "../../Styles/Styles";
+import { useNavigate } from "react-router-dom"; 
+import { Container } from "../../Styles/Styles";
+import { SubContainer, Form, Title, Input, Button } from "./login.styles";
 
 const Login = () => {
   const [memberId, setMemberId] = useState("");
   const [memberPwd, setMemberPwd] = useState("");
   const [msg, setMsg] = useState("");
-  const navigate = useNavigate(); // ✅ 추가
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const Login = () => {
 
   return (
     <Container>
+      <SubContainer>
       <Form onSubmit={handleLogin}>
         <Title>로그인</Title>
         <Input
@@ -51,6 +53,7 @@ const Login = () => {
           회원가입
         </Button>
       </Form>
+      </SubContainer>
     </Container>
   );
 };

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const SubContainer = styled.div`
   min-height: 100vh;
-  background-color: #f5f5f5;
   padding: 40px 20px;
 `;
 
