@@ -12,12 +12,14 @@ import CarDetail from "./component/Common/Car/CarDetail/CarDetail";
 import SaveCar from "./component/Common/Car/SaveCar/SaveCar";
 import Join from "./component/Common/Member/Join/Join";
 import Lisence from "./component/Common/Member/Lisence/Lisence"
+import { AuthProvider } from "./component/context/AuthContext";
 
 
 
 
 const App = () => {
   return (
+    <AuthProvider>
     <> 
         <Header />
         <Routes>
@@ -35,6 +37,7 @@ const App = () => {
         <Footer />
       
     </>
+    </AuthProvider>
   );
 }; 
 

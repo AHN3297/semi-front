@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import React, { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom"; 
 import {
   StyledHeader,
   Nav,
@@ -13,9 +13,11 @@ import {
   Icons,
   IconButton,
 } from "./Header.styles";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const Header = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const { auth, logout } = useContext(AuthContext);
 
   const menuItems = [
     {
@@ -49,9 +51,9 @@ const Header = () => {
       <Nav role="navigation" aria-label="메인 내비게이션">
         <NavContent>
           <Logo>
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <NavLink to="/" style={{ textDecoration: "none", color: "inherit" }}>
               EVision
-            </Link>
+            </NavLink>
           </Logo>
 
           <MenuContainer as="ul">
@@ -61,12 +63,12 @@ const Header = () => {
                 <Dropdown as="ul">
                   {item.submenu.map((sub, idx) => (
                     <DropdownItem as="li" key={idx}>
-                      <Link
+                      <NavLink
                         to={sub.path}
                         style={{ textDecoration: "none", color: "inherit" }}
                       >
                         {sub.name}
-                      </Link>
+                      </NavLink>
                     </DropdownItem>
                   ))}
                 </Dropdown>
@@ -75,25 +77,17 @@ const Header = () => {
           </MenuContainer>
 
           <Icons>
-            <IconButton
-              aria-label="프로필 보기"
-              onClick={() => navigate("/login")} 
-            >
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-            </IconButton>
+            {!auth.isAuthenticated ? (
+              <>
+                <IconButton onClick={() => navigate("/login")}>로그인</IconButton>
+                <IconButton onClick={() => navigate("/join")}>회원가입</IconButton>
+              </>
+            ) : (
+              <>
+                <IconButton onClick={() => navigate("/mypage")}>마이페이지</IconButton>
+                <IconButton onClick={logout}>로그아웃</IconButton>
+              </>
+            )}
           </Icons>
         </NavContent>
       </Nav>
