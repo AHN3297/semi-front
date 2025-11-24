@@ -11,7 +11,8 @@ import Car from "./component/Common/Car/Car";
 import CarDetail from "./component/Common/Car/CarDetail/CarDetail";
 import SaveCar from "./component/Common/Car/SaveCar/SaveCar";
 import Join from "./component/Common/Member/Join/Join";
-import Lisence from "./component/Common/Member/Lisence/Lisence"
+import License from "./component/Common/Member/License/License";
+import MyInfo from "./component/Common/Member/info/Myinfo";
 import { AuthProvider } from "./component/context/AuthContext";
 
 
@@ -31,7 +32,8 @@ const App = () => {
           <Route path="/carDetail" element={<CarDetail />} />
           <Route path="/saveCar" element={<SaveCar />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/lisence" element={<Lisence />} />
+          <Route path="/license" element={<License />} />
+          <Route path="/myInfo" element={<MyInfo />} />
           
         </Routes>
         <Footer />

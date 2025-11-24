@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  min-height: 100vh;
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-`;
 
 export const FormWrapper = styled.div`
   background: white;
@@ -16,6 +8,13 @@ export const FormWrapper = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   width: 100%;
+
+  /* 중앙 정렬 */
+  margin: auto; /* 가로 중앙 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
 `;
 
 export const Title = styled.h1`

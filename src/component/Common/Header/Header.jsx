@@ -84,7 +84,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <IconButton onClick={() => navigate("/mypage")}>마이페이지</IconButton>
+                <IconButton onClick={() => navigate("/myInfo")}>마이페이지</IconButton>
                 <IconButton onClick={logout}>로그아웃</IconButton>
               </>
             )}

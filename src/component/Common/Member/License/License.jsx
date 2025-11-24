@@ -14,7 +14,7 @@ import {
   SubmitButton,
   SkipButton,
   CustomDatePicker
-} from './Lisence.styles';
+} from './License.styles';
 
 
 const LicenseCertification = () => {
@@ -56,6 +56,9 @@ const LicenseCertification = () => {
 
   const handleSkip = () => {
     alert('차량 예약 시 운전면허 인증을 해야 합니다.');
+    setTimeout(() => {
+                        navigate("/");
+                      }, 1000);
   };
 
   return (

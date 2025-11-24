@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "../../Styles/Styles";
 import axios from "axios";
 import { SubContainer, Form, Title, Input, Button } from "./login.styles";
+import {AuthContext } from "../../../context/AuthContext.jsx"
 
 const Login = () => {
   const [memberId, setMemberId] = useState("");
   const [memberPwd, setMemberPwd] = useState("");
   const [msg, setMsg] = useState("");
-  cosnt [login] = useContext(AuthContext);
+  const {login} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    e.precentDefault();
+    e.preventDefault();
         const regexp = /^[a-zA-Z0-9]{3,20}$/;
         if(!regexp.test(memberId)){
             setMsg("아이디는 영어 숫자만 쓰셈 3자에서 20자 사이임ㅋ");
@@ -23,12 +24,12 @@ const Login = () => {
         } else{
             setMsg("");
         }
-        axios.useOptimistic("http://localhost:8081/auth/login",{
+        axios.post("http://localhost:8081/auth/login",{
             memberId,
             memberPwd
         }).then(result =>{
-            const { memberId, memberName, accessToken, refreshtoken, role} = result.data;
-            login(memberId, memberName, accessToken, refreshtoken, role);
+            const { memberNo, memberName, accessToken, refreshToken, role} = result.data;
+            login({memberNo, memberName, accessToken, refreshToken, role});
             alert("추카포카");
             window.location.href="/";
         }).catch(error => {
